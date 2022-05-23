@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Навчай Українською</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="connection_problem">Помилка мережі</string>
+    <string name="menu_home">Головна</string>
+    <string name="menu_clubs">Гуртки</string>
+    <string name="menu_club">Гурток</string>
+    <string name="menu_challenge">Челендж</string>
+    <string name="menu_about_us">Про нас</string>
+    <string name="challengeTitle">Челендж \"Навчай українською\"</string>
+    <string name="challengeDescription">Ми допоможемо вам перейти на українську мову викладання. Тут ви можете знайти мотиваційні та практичні вебінари з експертами, корисні матеріали, які вдосконалять ваші знання та навички викладати українською.</string>
+
+    <string-array name="ff">
+        <item>Київ</item>
+        <item>Харків</item>
+        <item>Дніпро</item>
+        <item>Одеса</item>
+        <item>Запоріжжя</item>
+        <item>Кропивницький</item>
+        <item>Херсон</item>
+        <item>Миколаїв</item>
+        <item>Суми</item>
+        <item>Маріуполь</item>
+        <item>Чернігів</item>
+        <item>Полтава</item>
+        <item>Кременчук</item>
+        <item>Черкаси</item>
+        <item>Без локації</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_task">Завдання</string>
+    <string name="todo">TODO</string>
+    <string name="login">Увійти</string>
+    <string name="category">категорії</string>
+    <string name="enter_account">Увійти до акаунту</string>
+    <string name="exit_account">Вийти з акаунту</string>
+    <string name="account_image">Account Image</string>
+    <string name="user_name">Ваше Ім\'я</string>
+    <string name="surname">Прізвище</string>
+    <string name="name">Ім\'я</string>
+    <string name="number">Номер телефону</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="passwordVerification">Підтвердження паролю</string>
+    <string name="signUp">Зареєструватися</string>
+    <string name="register">Зареєструватися</string>
+</resources>

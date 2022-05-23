@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:layout_marginTop="150dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:id="@+id/rootAdvView"
+        android:padding="16dp"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbars="vertical">
+
+        <TextView
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Розширений Пошук"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Гурток/Центр"
+            android:textStyle="bold"/>
+
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/club_adv_search_radioBtn"
+                android:buttonTint="@color/checkbox"
+                android:backgroundTintMode="screen"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Гурток" />
+
+
+            <RadioButton
+                android:id="@+id/center_adv_search_radioBtn"
+                android:buttonTint="@color/checkbox"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Центр" />
+
+
+        </RadioGroup>
+
+
+        <TextView
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Місто"
+            android:textStyle="bold"/>
+
+        <Spinner
+            android:id="@+id/spinner_search_city"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            style="@style/spinner_style"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="0dp"
+            android:spinnerMode="dropdown" />
+        <TextView
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Район Міста"
+            android:textStyle="bold"/>
+
+        <Spinner
+            android:id="@+id/spinner_city_district"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            style="@style/spinner_style"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="0dp"
+            android:entries="@array/ff"
+            android:spinnerMode="dropdown" />
+
+
+        <TextView
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Найближча станція метро"
+            android:textStyle="bold"/>
+
+        <Spinner
+            android:id="@+id/spinner_metro_station"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            style="@style/spinner_style"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="0dp"
+            android:entries="@array/ff"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Ремоут"
+            android:textStyle="bold"/>
+
+        <CheckBox
+            android:id="@+id/isOnline"
+            android:buttonTint="@color/checkbox"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Доступний онлайн" />
+
+        <TextView
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Категорії"
+            android:textStyle="bold"/>
+
+
+        <Button
+            android:background="@color/toolbar_orange"
+            android:id="@+id/apply_search"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Застосувати"/>
+
+        <Button
+            android:background="@color/toolbar_orange"
+            android:id="@+id/clear_search"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Очистити"/>
+
+
+
+
+    </LinearLayout>
+</ScrollView>

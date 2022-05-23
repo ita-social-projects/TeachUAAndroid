@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
+    card_view:cardBackgroundColor="@color/white"
+    android:layout_marginLeft="40dp"
+    android:layout_marginRight="40dp"
+    android:layout_marginTop="150dp"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardElevation="5dp"
+    card_view:contentPadding="10dp"
+    card_view:cardCornerRadius="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <include layout="@layout/category_logo_item" />
+
+        <TextView
+            android:id="@+id/clubTitle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="5dp"
+            android:text="Title"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/clubCategory"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/category_background"
+            android:text="club CategoryTitle"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/clubDescription"
+            android:layout_width="match_parent"
+            android:layout_height="83dp"
+            android:layout_marginTop="90dp"
+            android:text="This Would be a description of Club"
+            android:textColor="@color/black" />
+
+        <RatingBar
+            android:layout_marginTop="90dp"
+            android:layout_alignTop="@id/clubDescription"
+            android:id="@+id/clubRating"
+            android:theme="@style/RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="left|bottom"
+            android:isIndicator="true"
+            android:rating="0.0"
+            android:scaleX=".6"
+            android:scaleY=".6"
+            android:numStars="5"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

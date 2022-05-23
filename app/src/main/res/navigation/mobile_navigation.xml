@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.softserve.teachua.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_challengeFragment"
+            app:destination="@id/challengeFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_clubs"
+            app:destination="@id/nav_clubs"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_clubs"
+        android:name="com.softserve.teachua.ui.clubs.ClubsFragment"
+        android:label="@string/menu_clubs"
+        tools:layout="@layout/fragment_clubs" >
+        <action
+            android:id="@+id/action_nav_clubs_to_nav_club"
+            app:destination="@id/nav_club" />
+        <argument
+            android:name="categoryName"
+            app:argType="string" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_club"
+        android:name="com.softserve.teachua.ui.club.ClubFragment"
+        android:label="@string/menu_club"
+        tools:layout="@layout/fragment_club" />
+
+
+    <fragment
+        android:id="@+id/nav_challenges"
+        android:label="@string/menu_challenge"
+        android:name="com.softserve.teachua.ui.challenges.ChallengesFragment"
+        tools:layout="@layout/fragment_challenges">
+        <action
+            android:id="@+id/challenges_to_challelnge"
+            app:destination="@id/challengeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/challengeFragment"
+        android:label="@string/menu_challenge"
+        android:name="com.softserve.teachua.ui.challenge.ChallengeFragment"
+        tools:layout="@layout/challenge_fragment">
+        <argument
+            android:defaultValue="1"
+            android:name="id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_challengeFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/taskFragment"
+        android:label="@string/menu_task"
+        android:name="com.softserve.teachua.ui.task.TaskFragment"
+        tools:layout="@layout/task_fragment">
+        <argument
+            android:defaultValue="-1"
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_about_us"
+        android:name="com.softserve.teachua.ui.aboutus.AboutUs"
+        android:label="@string/menu_about_us"
+        tools:layout="@layout/about_us_fragment" />
+
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.softserve.teachua.ui.login.LoginFragment"
+        android:label="Увійти"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_nav_login_to_nav_register"
+            app:destination="@id/nav_register" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_register"
+        android:name="com.softserve.teachua.ui.register.RegisterFragment"
+        android:label="@string/signUp"
+        tools:layout="@layout/fragment_register" />
+
+</navigation>
