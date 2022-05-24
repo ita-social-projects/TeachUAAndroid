@@ -49,6 +49,7 @@
     <string name="email">Email</string>
     <string name="password">Пароль</string>
     <string name="passwordVerification">Підтвердження паролю</string>
-    <string name="signUp">Зареєструватися</string>
+    <string name="signUp">Увійти</string>
+    <string name="news">Новини</string>
     <string name="register">Зареєструватися</string>
 </resources>

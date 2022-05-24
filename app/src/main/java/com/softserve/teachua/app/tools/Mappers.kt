@@ -19,6 +19,21 @@ internal fun List<BannersDto>.toBanner(): List<BannerModel> {
     return map { it.toBanner() }
 }
 
+
+internal fun NewsDto.toNews(): NewsModel {
+    return NewsModel(
+        newsId = id,
+        newsTitle = title,
+        newsDescription = description,
+        newsUrlTitleLogo = urlTitleLogo
+    )
+
+}
+
+internal fun List<NewsDto>.toNewsModelMap(): List<NewsModel> {
+    return map { it.toNews() }
+}
+
 internal fun CategoryDto.toCategory(): CategoryModel {
     return CategoryModel(
         categoryId = id,
