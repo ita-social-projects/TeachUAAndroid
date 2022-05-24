@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         enterToAccountBtn = binding.navView.getHeaderView(0).account_login_btn
         userLogo = binding.navView.getHeaderView(0).userPhoto
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.nav_home, R.id.nav_clubs, R.id.nav_challenges, R.id.nav_about_us),
+            setOf(R.id.nav_home, R.id.nav_clubs, R.id.nav_challenges, R.id.nav_about_us, R.id.nav_news),
             drawerLayout)
         navView = binding.navView
         navController = findNavController(R.id.nav_host_fragment_content_main)

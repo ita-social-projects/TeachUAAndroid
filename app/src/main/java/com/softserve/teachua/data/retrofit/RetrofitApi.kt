@@ -11,6 +11,16 @@ interface RetrofitApi {
     suspend fun getAllBanners(
     ): Response<List<BannersDto>>
 
+    @GET("newslist")
+    suspend fun getAllNews(
+    ): Response<List<NewsDto>>
+
+    @GET("news/{id}")
+    suspend fun getNewsById(
+        @Path("id")
+        id: Int
+    ): Response<NewsDto>
+
     @GET("user/{userId}")
     suspend fun getUserById(
         @Header("Authorization")

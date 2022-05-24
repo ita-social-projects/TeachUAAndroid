@@ -18,6 +18,12 @@
             app:destination="@id/nav_clubs"
             app:popUpTo="@id/nav_home"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_nav_home_to_nav_about_us"
+            app:destination="@id/nav_about_us" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_news"
+            app:destination="@id/nav_news" />
     </fragment>
 
     <fragment
@@ -95,5 +101,11 @@
         android:name="com.softserve.teachua.ui.register.RegisterFragment"
         android:label="@string/signUp"
         tools:layout="@layout/fragment_register" />
+
+    <fragment
+        android:id="@+id/nav_news"
+        android:name="com.softserve.teachua.ui.news.NewsFragment"
+        android:label="@string/news"
+        tools:layout="@layout/fragment_news" />
 
 </navigation>

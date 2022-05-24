@@ -12,11 +12,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ChallengesViewModel @Inject constructor(private val challengesUseCasesInterface: ChallengesUseCasesInterface) : ViewModel() {
+class ChallengesViewModel @Inject constructor(private val challengesUseCasesInterface: ChallengesUseCasesInterface) :
+    ViewModel() {
 
     private var _challenges = MutableStateFlow<Resource<List<ChallengeModel>>>(Resource.loading())
 
-    val challenges : StateFlow<Resource<List<ChallengeModel>>>
+    val challenges: StateFlow<Resource<List<ChallengeModel>>>
         get() = _challenges
 
     fun load() = viewModelScope.launch {
