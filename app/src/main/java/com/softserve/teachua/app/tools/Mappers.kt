@@ -30,6 +30,21 @@ internal fun NewsDto.toNews(): NewsModel {
 
 }
 
+internal fun List<AboutDto>.toAboutModelMap(): List<AboutModel> {
+    return map { it.toAbout() }
+}
+
+internal fun AboutDto.toAbout(): AboutModel {
+    return AboutModel(
+        aboutId = id,
+        aboutText = text,
+        aboutPicture = picture,
+        aboutVideo = video,
+        aboutType = type
+    )
+
+}
+
 internal fun List<NewsDto>.toNewsModelMap(): List<NewsModel> {
     return map { it.toNews() }
 }
@@ -111,12 +126,12 @@ internal fun ChallengeDto.toChallenge(): ChallengeModel {
         id = id,
         isActive = isActive,
         name = name,
-        sortNumber = sortNumber?:-1,
-        title = title?:"",
-        tasks = tasks?:emptyList(),
-        picture = picture?:"",
-        description = description?:"",
-        registrationLink = registrationLink?:"",
+        sortNumber = sortNumber ?: -1,
+        title = title ?: "",
+        tasks = tasks ?: emptyList(),
+        picture = picture ?: "",
+        description = description ?: "",
+        registrationLink = registrationLink ?: "",
         user = user
     )
 }

@@ -28,14 +28,29 @@
                 android:layout_height="236dp"
                 android:layout_margin="15dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/banner_shadow"
                 android:padding="8dp"
                 app:cardCornerRadius="8dp">
+
 
                 <ImageView
                     android:id="@+id/challengePicture"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/banner_shadow"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/challengeName"
+                    android:text="Challange Name"
+                    android:layout_gravity="center"
+                    android:textSize="19sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
 
 
             </androidx.cardview.widget.CardView>
@@ -52,6 +67,7 @@
                     android:layout_height="wrap_content"
                     android:text="Наші контакти"
                     android:textColor="@color/black"
+                    android:layout_marginStart="15dp"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -59,28 +75,28 @@
                     android:id="@+id/ytbBtn"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginStart="120dp"
+                    android:layout_marginStart="135dp"
                     android:background="@drawable/ic_baseline_facebook_24" />
 
                 <ImageView
                     android:id="@+id/fcbBtn"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginStart="150dp"
+                    android:layout_marginStart="165dp"
                     android:background="@drawable/ic_baseline_youtube_24" />
 
                 <ImageView
                     android:id="@+id/instBtn"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginStart="180dp"
+                    android:layout_marginStart="195dp"
                     android:background="@drawable/ic_baseline_instagram_50" />
 
                 <ImageView
                     android:id="@+id/mailBtn"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginStart="210dp" />
+                    android:layout_marginStart="225dp" />
 
             </RelativeLayout>
 
@@ -90,6 +106,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:text="Heere are some decription"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
