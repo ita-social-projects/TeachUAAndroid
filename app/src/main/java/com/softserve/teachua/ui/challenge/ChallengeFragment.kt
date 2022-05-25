@@ -79,6 +79,7 @@ class ChallengeFragment : Fragment() {
                             .placeholder(com.denzcoskun.imageslider.R.drawable.placeholder)
                             .into(binding.challengePicture)
 
+                        binding.challengeName.text = challengeViewModel.challenge.value.data?.title
                         binding.challengeDescription.text =
                             CategoryToUrlTransformer().parseHtml(challengeViewModel.challenge.value.data?.description!!)
 

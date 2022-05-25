@@ -21,6 +21,10 @@ class RemoteDataSource @Inject constructor(private val retrofitApi: RetrofitApi)
 
     suspend fun getNews() = getResult { retrofitApi.getAllNews() }
 
+    suspend fun getAboutById(id: Int) = getResult { retrofitApi.getAboutById(id) }
+
+    suspend fun getAbout() = getResult { retrofitApi.getAbout() }
+
     suspend fun getTask(id: Int) = getResult { retrofitApi.getTask(id) }
 
     suspend fun getUserById(token: String, id: Int) =

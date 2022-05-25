@@ -18,7 +18,7 @@ interface RetrofitApi {
     @GET("news/{id}")
     suspend fun getNewsById(
         @Path("id")
-        id: Int
+        id: Int,
     ): Response<NewsDto>
 
     @GET("user/{userId}")
@@ -99,6 +99,12 @@ interface RetrofitApi {
 
     @GET("challenge/task/{id}")
     suspend fun getTask(@Path("id") id: Int): Response<TaskDto>
+
+    @GET("about/{id}")
+    suspend fun getAboutById(@Path("id") id: Int): Response<AboutDto>
+
+    @GET("about")
+    suspend fun getAbout(): Response<List<AboutDto>>
 
 
     @POST("signin")

@@ -6,6 +6,7 @@ import dagger.hilt.android.HiltAndroidApp
 const val baseImageUrl = "https://speak-ukrainian.org.ua/dev/"
 const val baseMailImage = "/static/images/contacts/mail.svg"
 const val baseUrl = "https://speak-ukrainian.org.ua/dev/api/"
+const val baseAboutUsImg = "static/images/service/banerAboutUs.jpg"
 val roles = listOf("ВІДВІДУВАЧ", "АДМІНІСТРАТОР", "КЕРІВНИК")
 
 

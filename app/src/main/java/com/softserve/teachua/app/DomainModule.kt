@@ -82,6 +82,12 @@ class DomainModule () {
 
     @Singleton
     @Provides
+    fun providesAboutUseCases(): AboutUseCasesInterface {
+        return AboutUseCases(providesRemoteDataSource())
+    }
+
+    @Singleton
+    @Provides
     fun providesTaskUseCases():TaskUseCasesInterface{
         return TaskUseCases(providesRemoteDataSource())
     }
