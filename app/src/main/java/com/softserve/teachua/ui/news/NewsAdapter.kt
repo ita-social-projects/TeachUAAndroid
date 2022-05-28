@@ -10,7 +10,9 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.softserve.teachua.R
+import com.softserve.teachua.app.baseImageUrl
 import com.softserve.teachua.data.model.ChallengeModel
 import com.softserve.teachua.data.model.NewsModel
 import com.softserve.teachua.ui.challenges.ChallengesAdapter
@@ -41,7 +43,7 @@ class NewsAdapter(context: Context) :
             .setPopEnterAnim(android.R.anim.fade_out)
 
         holder.itemView.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.challengeFragment, bundle, navBuilder.build())
+            view.findNavController().navigate(R.id.nav_current_news, bundle, navBuilder.build())
             println("item at pos" + getItem(position).newsId)
         }
     }
@@ -53,13 +55,10 @@ class NewsAdapter(context: Context) :
             itemView.newsTitle.text = model.newsTitle
 
 
-//            if (model.picture.endsWith(".svg"))
-//                GlideToVectorYou
-//                    .init()
-//                    .with(layoutInflater.context)
-//                    .load((baseImageUrl + model.categoryUrlLogo).toUri(), itemView.categoryLogo)
-//            itemView.categoryBackground.setCardBackgroundColor(Color.parseColor(model.categoryBackgroundColor))
-
+            Glide.with(layoutInflater.context)
+                .load(baseImageUrl + model.newsUrlTitleLogo)
+                .centerInside()
+                .into(itemView.newsLogo)
 
         }
     }

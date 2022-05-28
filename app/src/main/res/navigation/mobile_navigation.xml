@@ -106,6 +106,16 @@
         android:id="@+id/nav_news"
         android:name="com.softserve.teachua.ui.news.NewsFragment"
         android:label="@string/news"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_nav_news_to_nav_current_news"
+            app:destination="@id/nav_current_news" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_current_news"
+        android:name="com.softserve.teachua.ui.currentNews.CurrentNewsFragment"
+        android:label="@string/current_news"
+        tools:layout="@layout/fragment_current_news" />
 
 </navigation>
