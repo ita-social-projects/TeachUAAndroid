@@ -79,19 +79,19 @@ class AboutUs : Fragment() {
     }
 
     private fun showSuccess() {
-        binding.aboutList.visibility = View.VISIBLE
+        binding.aboutContainer.visibility = View.VISIBLE
         binding.progressBarAbout.visibility = View.GONE
         binding.connectionProblemAbout.visibility = View.GONE
     }
 
     private fun showLoading() {
-        binding.aboutList.visibility = View.GONE
+        binding.aboutContainer.visibility = View.GONE
         binding.progressBarAbout.visibility = View.VISIBLE
         binding.connectionProblemAbout.visibility = View.GONE
     }
 
     private fun showError() {
-        binding.aboutList.visibility = View.GONE
+        binding.aboutContainer.visibility = View.GONE
         binding.progressBarAbout.visibility = View.GONE
         binding.progressBarAbout.visibility = View.VISIBLE
     }

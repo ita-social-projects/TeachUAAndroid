@@ -10,9 +10,13 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.softserve.teachua.R
+import com.softserve.teachua.app.baseImageUrl
+import com.softserve.teachua.app.tools.CategoryToUrlTransformer
 import com.softserve.teachua.data.model.AboutModel
 import kotlinx.android.synthetic.main.about_item.view.*
+import kotlinx.android.synthetic.main.about_us_fragment.view.*
 import kotlinx.android.synthetic.main.news_item.view.*
 
 class AboutUsAdapter(context: Context) :
@@ -47,17 +51,22 @@ class AboutUsAdapter(context: Context) :
         RecyclerView.ViewHolder(itemView) {
 
         fun bind(model: AboutModel) {
-            itemView.aboutTitle.text = model.aboutText
 
+            if (!model.aboutPicture.isNullOrEmpty()) {
+                itemView.aboutPerPhoto.visibility = View.VISIBLE
+                Glide.with(layoutInflater.context)
+                    .load(baseImageUrl + model.aboutPicture)
+                    .fitCenter()
+                    .into(itemView.aboutPerPhoto)
+            }
+            else
+                itemView.aboutPerPhoto.visibility = View.GONE
 
-//            if (model.picture.endsWith(".svg"))
-//                GlideToVectorYou
-//                    .init()
-//                    .with(layoutInflater.context)
-//                    .load((baseImageUrl + model.categoryUrlLogo).toUri(), itemView.categoryLogo)
-//            itemView.categoryBackground.setCardBackgroundColor(Color.parseColor(model.categoryBackgroundColor))
+            if (!model.aboutText.isNullOrEmpty()) {
 
+                itemView.aboutTitle.text = CategoryToUrlTransformer().parseHtml(model.aboutText!!)
 
+            }
         }
     }
 }
