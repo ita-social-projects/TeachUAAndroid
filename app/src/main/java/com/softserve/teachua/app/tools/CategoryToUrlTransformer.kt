@@ -12,7 +12,9 @@ class CategoryToUrlTransformer {
             return categoryName
     }
 
-    fun parseHtml(html: String): String {
-        return Jsoup.parse(html).text()
+    fun parseHtml(html: String?): String {
+        return html?.let { Jsoup.parse(it).text() }.toString()
+
+
     }
 }

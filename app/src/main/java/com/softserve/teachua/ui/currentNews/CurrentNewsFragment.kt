@@ -22,8 +22,7 @@ class CurrentNewsFragment : Fragment() {
 
     private var _binding: FragmentCurrentNewsBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+
     private val binding get() = _binding!!
     private val currentNewsViewModel: CurrentNewsViewModel by viewModels()
 
@@ -41,6 +40,7 @@ class CurrentNewsFragment : Fragment() {
         updateView()
         return view
     }
+    
 
     private fun initViews() {
         currentNewsViewModel.viewModelScope.launch {

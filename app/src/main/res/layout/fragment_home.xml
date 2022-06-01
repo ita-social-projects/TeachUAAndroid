@@ -70,6 +70,7 @@
                 android:layout_marginRight="15dp"
                 tools:listitem="@layout/category_item" />
 
+
             <TextView
                 android:id="@+id/mainChallengeTitle"
                 android:layout_width="wrap_content"
