@@ -5,11 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.ScrollView
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
@@ -19,6 +23,7 @@ import com.softserve.teachua.app.baseImageUrl
 import com.softserve.teachua.app.baseMailImage
 import com.softserve.teachua.app.tools.CategoryToUrlTransformer
 import com.softserve.teachua.app.enums.Resource
+import com.softserve.teachua.app.tools.HorizontalDecorator
 import com.softserve.teachua.databinding.ChallengeFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -30,6 +35,10 @@ class ChallengeFragment : Fragment() {
     private var _binding: ChallengeFragmentBinding? = null
     private val binding get() = _binding!!
     private val challengeViewModel: ChallengeViewModel by viewModels()
+
+    private lateinit var connectionProblemTextView: TextView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var content: ScrollView
     private lateinit var adapter: TasksAdapter
 
 
@@ -49,18 +58,14 @@ class ChallengeFragment : Fragment() {
     }
 
     private fun initViews() {
-        challengeViewModel.viewModelScope.launch {
-            adapter = TasksAdapter(requireContext())
-            binding.connectionProblemChallenge.visibility = View.GONE
-            binding.progressBarChallenge.visibility = View.GONE
-            val layoutManager =
-                LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-            binding.taskList.layoutManager = layoutManager
-            binding.taskList.adapter = adapter
-            initContacts()
 
+        adapter = TasksAdapter(requireContext())
+        progressBar = binding.progressBarChallenge
+        connectionProblemTextView = binding.connectionProblemChallenge
+        content = binding.contentChallenge
+        initTasks()
+        initContacts()
 
-        }
     }
 
 
@@ -112,6 +117,15 @@ class ChallengeFragment : Fragment() {
         binding.contentChallenge.visibility = View.GONE
         binding.progressBarChallenge.visibility = View.GONE
         binding.connectionProblemChallenge.visibility = View.VISIBLE
+    }
+
+    private fun initTasks() {
+        val layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        binding.taskList.layoutManager = layoutManager
+        binding.taskList.adapter = adapter
+        PagerSnapHelper().attachToRecyclerView(binding.taskList)
+        binding.taskList.addItemDecoration(HorizontalDecorator())
     }
 
     private fun initContacts() {

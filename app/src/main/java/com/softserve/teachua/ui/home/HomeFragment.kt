@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.denzcoskun.imageslider.ImageSlider
@@ -21,6 +22,7 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.softserve.teachua.R
 import com.softserve.teachua.app.enums.Resource
+import com.softserve.teachua.app.tools.HorizontalDecorator
 import com.softserve.teachua.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -63,7 +65,19 @@ class HomeFragment : Fragment() {
                 when (homeViewModel.banners.value.status) {
                     Resource.Status.SUCCESS -> {
                         updateBanners()
-                        showSuccess()
+                        homeViewModel.viewModelScope.launch {
+                            homeViewModel.categories.collectLatest { categories ->
+                                when (homeViewModel.categories.value.status) {
+                                    Resource.Status.SUCCESS -> {
+                                        showSuccess()
+                                        adapter.submitList(categories.data)
+                                    }
+                                    Resource.Status.LOADING -> showLoading()
+                                    Resource.Status.FAILED -> showError()
+
+                                }
+                            }
+                        }
                     }
                     Resource.Status.LOADING -> showLoading()
                     Resource.Status.FAILED -> showError()
@@ -71,19 +85,6 @@ class HomeFragment : Fragment() {
             }
         }
 
-        homeViewModel.viewModelScope.launch {
-            homeViewModel.categories.collectLatest { categories ->
-                when (homeViewModel.categories.value.status) {
-                    Resource.Status.SUCCESS -> {
-                        showSuccess()
-                        adapter.submitList(categories.data)
-                    }
-                    Resource.Status.LOADING -> showLoading()
-                    Resource.Status.FAILED -> showError()
-
-                }
-            }
-        }
     }
 
     private fun loadData() {
@@ -124,6 +125,11 @@ class HomeFragment : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         binding.categoriesList.layoutManager = layoutManager
         binding.categoriesList.adapter = adapter
+//        val snapHelper = SimpleSnapHelper(binding.viewOverflowPagerIndicator)
+//        snapHelper.attachToRecyclerView(binding.categoriesList)
+        PagerSnapHelper().attachToRecyclerView(binding.categoriesList)
+        binding.categoriesList.addItemDecoration(HorizontalDecorator())
+
     }
 
     private fun updateBanners() {
