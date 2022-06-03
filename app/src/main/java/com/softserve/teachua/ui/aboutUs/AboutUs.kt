@@ -1,4 +1,4 @@
-package com.softserve.teachua.ui.aboutus
+package com.softserve.teachua.ui.aboutUs
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,14 +11,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.softserve.teachua.R
 import com.softserve.teachua.app.baseAboutUsImg
 import com.softserve.teachua.app.baseImageUrl
 import com.softserve.teachua.app.enums.Resource
 import com.softserve.teachua.databinding.AboutUsFragmentBinding
-import com.softserve.teachua.databinding.FragmentChallengesBinding
-import com.softserve.teachua.ui.challenges.ChallengesAdapter
-import com.softserve.teachua.ui.challenges.ChallengesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

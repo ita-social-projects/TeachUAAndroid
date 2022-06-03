@@ -20,8 +20,9 @@ import com.softserve.teachua.data.dto.ClubDescriptionText
 import com.softserve.teachua.data.model.ClubModel
 import kotlinx.android.synthetic.main.category_logo_item.view.*
 import kotlinx.android.synthetic.main.club_item.view.*
+import kotlin.math.roundToInt
 
-class ClubsAdapter(context: Context) :
+class ClubsAdapter(context: Context, var isMyProfile: Boolean) :
     PagingDataAdapter<ClubModel, ClubsAdapter.ClubsViewHolder>(ClubDiffItemCallback),
     View.OnClickListener {
 
@@ -33,7 +34,11 @@ class ClubsAdapter(context: Context) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClubsViewHolder {
 
         con = parent.context
-        return ClubsViewHolder(layoutInflater.inflate(R.layout.club_item, parent, false))
+        return if (isMyProfile){
+            ClubsViewHolder(layoutInflater.inflate(R.layout.profile_item, parent, false))
+        } else
+            ClubsViewHolder(layoutInflater.inflate(R.layout.club_item, parent, false))
+
     }
 
     override fun onBindViewHolder(holder: ClubsViewHolder, position: Int) {
@@ -120,7 +125,8 @@ class ClubsAdapter(context: Context) :
             itemView.clubCategory.text = model.clubCategoryName
             itemView.clubCategory.setBackgroundColor(Color.parseColor(model.clubBackgroundColor))
             itemView.categoryBackground.background.setTint(Color.parseColor(model.clubBackgroundColor))
-            itemView.clubRating.rating = model.clubRating
+            println("rate" + model.clubRating)
+            itemView.clubRating.rating = model.clubRating.roundToInt().toFloat()
 
         }
 

@@ -83,7 +83,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_about_us"
-        android:name="com.softserve.teachua.ui.aboutus.AboutUs"
+        android:name="com.softserve.teachua.ui.aboutUs.AboutUs"
         android:label="@string/menu_about_us"
         tools:layout="@layout/about_us_fragment" />
 
@@ -117,5 +117,11 @@
         android:name="com.softserve.teachua.ui.currentNews.CurrentNewsFragment"
         android:label="@string/current_news"
         tools:layout="@layout/fragment_current_news" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.softserve.teachua.ui.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
 
 </navigation>

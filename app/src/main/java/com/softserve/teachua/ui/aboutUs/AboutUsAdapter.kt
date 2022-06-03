@@ -1,4 +1,4 @@
-package com.softserve.teachua.ui.aboutus
+package com.softserve.teachua.ui.aboutUs
 
 import android.content.Context
 import android.os.Bundle
@@ -16,8 +16,6 @@ import com.softserve.teachua.app.baseImageUrl
 import com.softserve.teachua.app.tools.CategoryToUrlTransformer
 import com.softserve.teachua.data.model.AboutModel
 import kotlinx.android.synthetic.main.about_item.view.*
-import kotlinx.android.synthetic.main.about_us_fragment.view.*
-import kotlinx.android.synthetic.main.news_item.view.*
 
 class AboutUsAdapter(context: Context) :
     ListAdapter<AboutModel, AboutUsAdapter.AboutUsViewHolder>(DiffAboutCallback()) {

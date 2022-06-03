@@ -69,7 +69,11 @@ class MainActivity : AppCompatActivity() {
         enterToAccountBtn = binding.navView.getHeaderView(0).account_login_btn
         userLogo = binding.navView.getHeaderView(0).userPhoto
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.nav_home, R.id.nav_clubs, R.id.nav_challenges, R.id.nav_about_us, R.id.nav_news),
+            setOf(R.id.nav_home,
+                R.id.nav_clubs,
+                R.id.nav_challenges,
+                R.id.nav_about_us,
+                R.id.nav_news),
             drawerLayout)
         navView = binding.navView
         navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -111,8 +115,8 @@ class MainActivity : AppCompatActivity() {
                             when (user.data.roleName) {
 
                                 "ROLE_USER" -> also { userRole.text = Role.user().uaName }
-                                "ROLE_ADMIN" -> also { userRole.text =  Role.admin().uaName }
-                                "ROLE_MANAGER" -> also { userRole.text =  Role.manager().uaName }
+                                "ROLE_ADMIN" -> also { userRole.text = Role.admin().uaName }
+                                "ROLE_MANAGER" -> also { userRole.text = Role.manager().uaName }
                             }
                             val userName = binding.navView.getHeaderView(0).userName
                             (user.data.firstName + " " + user.data.lastName).also {
@@ -122,6 +126,18 @@ class MainActivity : AppCompatActivity() {
                                 .load(baseImageUrl + user.data.urlLogo)
                                 .optionalCircleCrop()
                                 .into(userLogo)
+
+                            userLogo.setOnClickListener {
+                                val bundle = Bundle()
+                                bundle.putInt("id", user.data.id)
+                                bundle.putString("nameSurname", user.data.firstName + user.data.lastName)
+                                bundle.putString("role", user.data.roleName)
+                                bundle.putString("photo", user.data.urlLogo)
+                                bundle.putString("phone", user.data.phone)
+                                bundle.putString("email", user.data.email)
+                                closeDrawer()
+                                navController.navigate(R.id.nav_profile)
+                            }
 
                             showLoggedInView()
                         } else
@@ -184,6 +200,10 @@ class MainActivity : AppCompatActivity() {
 
     fun openDrawer() {
         drawerLayout.openDrawer(navView)
+    }
+
+    fun closeDrawer() {
+        drawerLayout.closeDrawer(navView)
     }
 
     fun changeLoginNavSection() {

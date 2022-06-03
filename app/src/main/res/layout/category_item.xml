@@ -44,10 +44,10 @@
             android:id="@+id/search_go_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Переглянути"
-            android:textColor="@color/black"
             android:layout_marginTop="178dp"
-            android:textStyle="bold"/>
+            android:text="Переглянути"
+            android:textColor="@color/blue"
+            android:textStyle="bold" />
 
         <ImageView
             android:layout_width="wrap_content"

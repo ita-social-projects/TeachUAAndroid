@@ -177,7 +177,7 @@ class ClubsFragment : Fragment(), View.OnClickListener {
 
         binding.rcv.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        clubsAdapter = ClubsAdapter(requireContext())
+        clubsAdapter = ClubsAdapter(requireContext(), false)
 
         binding.rcv.adapter = clubsAdapter.withLoadStateHeaderAndFooter(
             header = ClubsLoadStateAdapter { clubsAdapter.retry() },

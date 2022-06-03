@@ -90,6 +90,14 @@ interface RetrofitApi {
         page: Int? = 0,
     ): Response<ClubsDto>
 
+    @GET("clubs/{id}?")
+    suspend fun getClubsByUserId(
+        @Path("id")
+        id: Int,
+        @Query("page")
+        page: Int? = 0,
+    ): Response<ClubsDto>
+
     @GET("challenge/{id}")
     suspend fun getChallengeById(@Path("id") id: Int): Response<ChallengeDto>
 

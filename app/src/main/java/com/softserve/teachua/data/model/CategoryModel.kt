@@ -7,7 +7,7 @@ data class CategoryModel(
     var categoryDescription: String,
     var categoryUrlLogo: String,
     var categoryBackgroundColor: String,
-    var categoryTagBackgroundColor: String,
-    var categoryTagTextColor: String
+    var categoryTagBackgroundColor: String?,
+    var categoryTagTextColor: String?
 ) {
 }

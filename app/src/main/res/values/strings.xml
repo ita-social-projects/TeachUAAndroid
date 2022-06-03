@@ -52,5 +52,6 @@
     <string name="signUp">Увійти</string>
     <string name="news">Новини</string>
     <string name="current_news">Новина</string>
+    <string name="profile">Мій профіль</string>
     <string name="register">Зареєструватися</string>
 </resources>

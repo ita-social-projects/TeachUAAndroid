@@ -103,8 +103,6 @@ class ClubsViewModel @Inject constructor(
             _categories.value = categoriesUseCases.getAllCategories()
         }
 
-    fun loadClubs(cityName: String) =
-        viewModelScope.launch { _stations.value = stationsUseCases.getAllStations(cityName) }
 
     val clubs = Pager(config = PagingConfig(pageSize = 2), pagingSourceFactory = {
         ClubsPageSource(Common.retrofitService,
