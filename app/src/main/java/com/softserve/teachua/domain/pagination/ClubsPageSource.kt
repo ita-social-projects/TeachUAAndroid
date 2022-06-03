@@ -74,8 +74,8 @@ class ClubsPageSource(
                 val searchResponse =
                     service.getAllClubs(clubName = clubName,
                         cityName = cityName,
-                        isOnline,
-                        categoryName,
+                        isOnline = isOnline,
+                        categoryName = categoryName,
                         page = page)
 
 

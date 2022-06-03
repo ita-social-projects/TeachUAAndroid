@@ -5,16 +5,6 @@
     android:layout_height="40dp"
     android:background="@drawable/circle"
     android:backgroundTint="@color/orange_600">
-    <!--To change color and logo do this:
-        if (model.categoryUrlLogo.endsWith(".svg"))
-                GlideToVectorYou
-                        .init()
-                        .with(layoutInflater.context)
-                        .load((baseImageUrl + model.categoryUrlLogo).toUri(), itemView.categoryLogo)
-
-        itemView.categoryBackground.background.setTint(Color.parseColor(model.categoryBackgroundColor))
-    -->
-
 
     <ImageView
         android:id="@+id/categoryLogo"

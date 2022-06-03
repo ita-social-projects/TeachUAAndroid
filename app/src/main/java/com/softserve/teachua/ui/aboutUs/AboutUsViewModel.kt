@@ -1,10 +1,9 @@
-package com.softserve.teachua.ui.aboutus
+package com.softserve.teachua.ui.aboutUs
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.softserve.teachua.app.enums.Resource
 import com.softserve.teachua.data.model.AboutModel
-import com.softserve.teachua.data.model.NewsModel
 import com.softserve.teachua.domain.interfaces.AboutUseCasesInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/main_background"
     android:orientation="vertical"
-    tools:context=".ui.aboutus.AboutUs">
+    tools:context=".ui.aboutUs.AboutUs">
 
 
     <LinearLayout
