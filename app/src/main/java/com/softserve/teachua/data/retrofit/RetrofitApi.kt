@@ -7,9 +7,12 @@ import retrofit2.http.*
 
 interface RetrofitApi {
 
+    //BANNERS
     @GET("banners")
     suspend fun getAllBanners(
     ): Response<List<BannersDto>>
+
+    //NEWS
 
     @GET("newslist")
     suspend fun getAllNews(
@@ -21,6 +24,7 @@ interface RetrofitApi {
         id: Int,
     ): Response<NewsDto>
 
+    //USER
     @GET("user/{userId}")
     suspend fun getUserById(
         @Header("Authorization")
@@ -29,20 +33,34 @@ interface RetrofitApi {
         userId: Int? = null,
     ): Response<UserDto>
 
+    @PUT("user/{userId}")
+    suspend fun updateUserById(
+        @Header("Authorization")
+        authHeader: String,
+        @Path("userId")
+        userId: Int? = null,
+        @Body
+        updateUserDto: UpdateUserDto
+    ):Response<UpdateUserDto>
+
+    //CATEGORIES
     @GET("categories")
     suspend fun getAllCategories(
     ): Response<List<CategoryDto>>
 
+    //CITIES
     @GET("cities")
     suspend fun getAllCities(
     ): Response<List<CitiesDto>>
 
+    //DISTRICTS
     @GET("districts/{cityName}")
     suspend fun getDistrictsByCityName(
         @Path("cityName")
         cityName: String? = null,
     ): Response<List<DistrictsDto>>
 
+    //STATIONS
     @GET("stations/{cityName}")
     suspend fun getStationsByCityName(
         @Path("cityName")
@@ -50,6 +68,7 @@ interface RetrofitApi {
     ): Response<List<StationsDto>>
 
 
+    //CLUBS
     @GET("clubs/search?")
     suspend fun getAllClubs(
         @Query("clubName")
@@ -65,7 +84,6 @@ interface RetrofitApi {
     ): Response<ClubsDto>
 
 
-    @JvmSuppressWildcards
     @GET("clubs/search/advanced?")
     suspend fun getClubsByAdvancedSearch(
         @Query("name")
@@ -98,6 +116,7 @@ interface RetrofitApi {
         page: Int? = 0,
     ): Response<ClubsDto>
 
+    //CHALLENGES
     @GET("challenge/{id}")
     suspend fun getChallengeById(@Path("id") id: Int): Response<ChallengeDto>
 
@@ -108,6 +127,7 @@ interface RetrofitApi {
     @GET("challenge/task/{id}")
     suspend fun getTask(@Path("id") id: Int): Response<TaskDto>
 
+    //ABOUT
     @GET("about/{id}")
     suspend fun getAboutById(@Path("id") id: Int): Response<AboutDto>
 
@@ -115,6 +135,7 @@ interface RetrofitApi {
     suspend fun getAbout(): Response<List<AboutDto>>
 
 
+    //LOG-IN
     @POST("signin")
     suspend fun getLoggedUser(
         @Body

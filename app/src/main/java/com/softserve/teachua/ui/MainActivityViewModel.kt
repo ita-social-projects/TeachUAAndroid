@@ -29,7 +29,8 @@ class MainActivityViewModel @Inject constructor(
     //Delay is made
     fun loadUser() =
         viewModelScope.launch {
-            delay(1)
+            delay(100)
+            println("loaded main user")
             _user.value = Resource.loading()
             _user.value = currentUserUseCases.getUser()
 

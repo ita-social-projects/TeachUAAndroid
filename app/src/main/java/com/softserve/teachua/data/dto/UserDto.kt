@@ -6,9 +6,10 @@ data class UserDto(
     val lastName: String,
     val phone: String,
     val email: String,
-    val password: String,
+    val password: String?,
     val roleName: String,
     val urlLogo: String,
     val status: Boolean,
-    val logInTime: Long
-)
+    val logInTime: Long,
+) {
+}

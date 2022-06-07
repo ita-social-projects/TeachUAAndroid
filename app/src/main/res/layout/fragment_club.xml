@@ -9,6 +9,7 @@
     tools:context=".ui.club.ClubFragment">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -40,11 +41,11 @@
                 android:id="@+id/clubNameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:textColor="@color/black"
                 android:textSize="20dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:textStyle="bold"
                 app:layout_constraintBaseline_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -56,10 +57,11 @@
                 android:id="@+id/clubDescriptionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginBottom="50dp"
+                android:textColor="@color/black"
                 android:textSize="17dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -70,6 +72,17 @@
 
 
     </ScrollView>
+
+    <Button
+        android:layout_marginBottom="60dp"
+        android:id="@+id/registerToClub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Записатись на урок"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        tools:ignore="MissingConstraints" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

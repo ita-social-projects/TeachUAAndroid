@@ -7,13 +7,6 @@
     android:background="?colorBackgroundFloating"
     android:orientation="vertical">
 
-<!--    <ImageView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:id="@+id/contentBackground"-->
-<!--        android:visibility="gone"-->
-<!--        tools:ignore="MissingConstraints" />-->
-
     <LinearLayout
         android:id="@+id/profileContent"
         android:layout_width="match_parent"
