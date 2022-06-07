@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -98,26 +99,25 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    private fun initDrawer() {
+    fun loadUser() {
         mainActivityViewModel.loadUser()
+    }
+
+    private fun initDrawer() {
+        loadUser()
         loadImagesToDrawer()
-        lifecycleScope.launch {
+        mainActivityViewModel.viewModelScope.launch {
             mainActivityViewModel.user.collectLatest { user ->
                 when (user.status) {
                     SUCCESS -> {
 
-                        if (System.currentTimeMillis() <= user.data?.logInTime?.plus(24 * 60 * 60 * 1000)!!) {
+                        if (System.currentTimeMillis() <= user.data?.logInTime?.plus(1 * 60 * 60 * 1000)!!) {
                             logOutBtn.setOnClickListener {
                                 mainActivityViewModel.logOut()
 
                             }
                             val userRole = binding.navView.getHeaderView(0).userRole
-                            when (user.data.roleName) {
-
-                                "ROLE_USER" -> also { userRole.text = Role.user().uaName }
-                                "ROLE_ADMIN" -> also { userRole.text = Role.admin().uaName }
-                                "ROLE_MANAGER" -> also { userRole.text = Role.manager().uaName }
-                            }
+                            userRole.text = Role().getUaRoleName(user.data.roleName)
                             val userName = binding.navView.getHeaderView(0).userName
                             (user.data.firstName + " " + user.data.lastName).also {
                                 userName.text = it
@@ -128,13 +128,6 @@ class MainActivity : AppCompatActivity() {
                                 .into(userLogo)
 
                             userLogo.setOnClickListener {
-                                val bundle = Bundle()
-                                bundle.putInt("id", user.data.id)
-                                bundle.putString("nameSurname", user.data.firstName + user.data.lastName)
-                                bundle.putString("role", user.data.roleName)
-                                bundle.putString("photo", user.data.urlLogo)
-                                bundle.putString("phone", user.data.phone)
-                                bundle.putString("email", user.data.email)
                                 closeDrawer()
                                 navController.navigate(R.id.nav_profile)
                             }
