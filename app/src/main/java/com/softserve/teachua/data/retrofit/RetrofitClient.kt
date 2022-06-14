@@ -18,7 +18,7 @@ class RetrofitClient {
 
         return Retrofit.Builder()
             .baseUrl(baseUrl)
-            .client(okHttpClient)
+            //.client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(RetrofitApi::class.java)

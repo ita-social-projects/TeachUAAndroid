@@ -76,10 +76,27 @@ internal fun ClubDescriptionDto.toClub(): ClubModel {
         clubBackgroundColor = categories[0].backgroundColor,
         clubCategoryName = categories[0].name,
         clubRating = rating,
+        clubContacts = contacts,
         clubBanner = urlBackground
 
     )
 
+}
+
+internal fun List<MessageResponseDto>.toMessage(): List<MessageModel> {
+    return map { it.toMessage() }
+}
+
+internal fun MessageResponseDto.toMessage(): MessageModel {
+    return MessageModel(
+        messageId = id,
+        messageText = text,
+        messageDate = date,
+        messageClub = club,
+        messageSender = sender,
+        messageRecipient = recipient,
+        messageIsActive = isActive
+    )
 }
 
 internal fun CitiesDto.toCity(): CityModel {
@@ -90,6 +107,7 @@ internal fun CitiesDto.toCity(): CityModel {
         cityLongtitude = longtitude
     )
 }
+
 
 internal fun List<CitiesDto>.toCity(): List<CityModel> {
     return map { it.toCity() }

@@ -1,8 +1,8 @@
 package com.softserve.teachua.app
 
 import android.content.Context
-import com.softserve.teachua.data.retrofit.RetrofitClient
 import com.softserve.teachua.data.retrofit.RetrofitApi
+import com.softserve.teachua.data.retrofit.RetrofitClient
 import com.softserve.teachua.data.retrofit.datasource.RemoteDataSource
 import com.softserve.teachua.data.sharedpreferences.CurrentUserSharedPreferencesInterface
 import com.softserve.teachua.data.sharedpreferences.SharedPreferences
@@ -92,6 +92,18 @@ class DomainModule () {
         return TaskUseCases(providesRemoteDataSource())
     }
 
+    @Singleton
+    @Provides
+    fun providesFeedbackUseCases():FeedbacksUseCasesInterface{
+        return FeedbacksUseCases(providesRemoteDataSource())
+    }
+
+    @Singleton
+    @Provides
+    fun providesMessageUseCases():MessagesUseCasesInterface{
+        return MessageUseCases(providesRemoteDataSource())
+    }
+
 
     //
     //Remote Data Source (RETROFIT, RemoteDataSource)
@@ -104,9 +116,11 @@ class DomainModule () {
 
     @Singleton
     @Provides
-    fun providesRetrofitService():RetrofitApi{
+    fun providesRetrofitService(): RetrofitApi {
         return RetrofitClient().getClient()
     }
+
+
 
     @Singleton
     @Provides

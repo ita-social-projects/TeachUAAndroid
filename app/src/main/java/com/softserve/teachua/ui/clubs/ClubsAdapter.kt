@@ -49,7 +49,16 @@ class ClubsAdapter(context: Context, var isMyProfile: Boolean) :
         )
 
         val bundle = Bundle()
+        bundle.putInt("clubId", getItem(position)?.clubId!!)
         bundle.putString("clubName", getItem(position)?.clubName)
+        for(contact in getItem(position)!!.clubContacts){
+            if (contact.contactType.name != "Телефон")
+                bundle.putString("clubLink", contact.contactData)
+        }
+
+        if(!isMyProfile)
+            bundle.putString("clubLink", getItem(position)!!.clubContacts[0].contactData)
+
         when (desc.blocks.size) {
 
             4 -> {

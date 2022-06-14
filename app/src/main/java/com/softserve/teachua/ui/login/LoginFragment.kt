@@ -57,6 +57,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
     }
 
     private fun updateView() {
+        showSuccess()
         loginViewModel.viewModelScope.launch {
             loginViewModel.loggedDto.collectLatest { loggedUser ->
                 when (loggedUser.status) {
@@ -81,6 +82,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
                         }
                     }
+                    //Resource.Status.LOADING -> showLoading()
+                    Resource.Status.FAILED -> showError()
                     else -> {}
                 }
 
@@ -94,6 +97,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 userLoginDto.email = binding.enterEmail.text?.trim().toString()
                 userLoginDto.password = binding.enterPassword.text?.trim().toString()
                 loadData(userLoginDto)
+                showLoading()
             }
             R.id.signUpBtn -> {
                 view?.let { Navigation.findNavController(it)
@@ -101,6 +105,24 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 }
             }
         }
+    }
+
+    private fun showSuccess() {
+        binding.contentLogin.visibility = View.VISIBLE
+        binding.progressBarLogin.visibility = View.GONE
+        binding.connectionProblemLogin.visibility = View.GONE
+    }
+
+    private fun showLoading() {
+        binding.contentLogin.visibility = View.GONE
+        binding.progressBarLogin.visibility = View.VISIBLE
+        binding.connectionProblemLogin.visibility = View.GONE
+    }
+
+    private fun showError() {
+        binding.contentLogin.visibility = View.GONE
+        binding.progressBarLogin.visibility = View.GONE
+        binding.connectionProblemLogin.visibility = View.VISIBLE
     }
 
 }
