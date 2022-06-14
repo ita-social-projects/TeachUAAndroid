@@ -285,9 +285,6 @@ class ClubsFragment : Fragment(), View.OnClickListener {
                     Toast.makeText(requireContext(),
                         parent.getItemAtPosition(pos).toString(),
                         Toast.LENGTH_SHORT).show()
-                    //clubsViewModel.advancedSearchClubDto.value?.isAdvanced = false
-                    //createViewModel()
-                    //addDataToVM()
                     clubsAdapter.refresh()
 
 
@@ -403,6 +400,7 @@ class ClubsFragment : Fragment(), View.OnClickListener {
         }
 
     }
+
     private fun createAdvancedSearchDialog() {
         dialog = Dialog(requireContext(), R.style.CustomAlertDialog)
         dialog.setContentView(R.layout.adv_search)

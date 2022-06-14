@@ -1,5 +1,7 @@
 package com.softserve.teachua.data.model
 
+import com.softserve.teachua.data.dto.ContactsDto
+
 data class ClubModel(
     var clubId: Int,
     var clubName: String,
@@ -8,6 +10,7 @@ data class ClubModel(
     var clubBackgroundColor: String,
     var clubCategoryName: String,
     var clubRating: Float,
+    var clubContacts: List<ContactsDto>,
     var clubBanner: String?
 ) {
 }

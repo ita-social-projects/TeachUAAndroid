@@ -2,6 +2,7 @@ package com.softserve.teachua.ui.profile
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ import com.softserve.teachua.app.enums.Role
 import com.softserve.teachua.app.profileBackground
 import com.softserve.teachua.databinding.FragmentProfileBinding
 import com.softserve.teachua.ui.clubs.ClubsAdapter
+import com.softserve.teachua.ui.news.NewsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -36,7 +38,8 @@ class ProfileFragment : Fragment() {
 
     private val binding get() = _binding!!
     private val profileViewModel: ProfileViewModel by viewModels()
-    private lateinit var adapter: ClubsAdapter
+    private lateinit var clubAdapter: ClubsAdapter
+    private lateinit var messagesAdapter: MessagesAdapter
 
 
     override fun onCreateView(
@@ -49,6 +52,7 @@ class ProfileFragment : Fragment() {
 
 
         loadData()
+        loadMessages()
         initViews()
         updateView()
 
@@ -57,6 +61,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initViews() {
+
 
         Glide.with(requireContext())
             .load(baseImageUrl + profileBackground)
@@ -76,14 +81,21 @@ class ProfileFragment : Fragment() {
 
             })
 
-        adapter = ClubsAdapter(requireContext(), true)
-        val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-        binding.profileClubsList.layoutManager = layoutManager
-        binding.profileClubsList.adapter = adapter.withLoadStateFooter(
-            footer = EditProfileClubsLoadStateAdapter { adapter.retry() })
+        clubAdapter = ClubsAdapter(requireContext(), true)
+        val clubLayoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        binding.profileClubsList.layoutManager = clubLayoutManager
+        binding.profileClubsList.adapter = clubAdapter.withLoadStateFooter(
+            footer = EditProfileClubsLoadStateAdapter { clubAdapter.retry() })
         binding.editProfile.setOnClickListener {
             findNavController().navigate(R.id.nav_edit_profile)
         }
+
+        messagesAdapter = MessagesAdapter(requireContext())
+        val messagesLayoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        binding.profileMessagesList.layoutManager = messagesLayoutManager
+        binding.profileMessagesList.adapter = messagesAdapter
     }
 
 
@@ -92,12 +104,13 @@ class ProfileFragment : Fragment() {
             profileViewModel.currentUserProfile.collectLatest { profile ->
                 when (profileViewModel.currentUserProfile.value.status) {
                     Resource.Status.SUCCESS -> {
-                        showSuccess()
+
                         profileViewModel.viewModelScope.launch {
                             profileViewModel.profileClubs.collectLatest { profileClubs ->
-                                adapter.submitData(profileClubs)
+                                clubAdapter.submitData(profileClubs)
 
                             }
+
                         }
 
 
@@ -113,17 +126,41 @@ class ProfileFragment : Fragment() {
                         binding.profileRole.text = Role().getUaRoleName(profile.data?.roleName!!)
                         binding.profilePhoneNumber.text = profile.data.phone
                         binding.profileEmailAddress.text = profile.data.email
-                    }
+
+                        profileViewModel.viewModelScope.launch {
+                            profileViewModel.messages.collectLatest { messages ->
+                                when(messages.status){
+
+                                    Resource.Status.SUCCESS -> {
+                                        showSuccess()
+                                        messagesAdapter.submitList(messages.data)
+                                    }
+
+                                    Resource.Status.LOADING -> showLoading()
+                                    Resource.Status.FAILED -> showError()
+
+                                }
+
+                                }
+                            }
+                        }
+
                     Resource.Status.LOADING -> showLoading()
                     Resource.Status.FAILED -> showError()
                 }
             }
+
         }
 
     }
 
+
     private fun loadData() {
         profileViewModel.loadUser()
+    }
+
+    private fun loadMessages() {
+        profileViewModel.loadMessages()
     }
 
     private fun showSuccess() {
@@ -142,6 +179,7 @@ class ProfileFragment : Fragment() {
         binding.profileContent.visibility = View.GONE
         binding.progressBarProfile.visibility = View.GONE
         binding.connectionProblemProfile.visibility = View.VISIBLE
+        binding.connectionProblemProfile.text = "Problems..."
     }
 
     private fun whenLoadingClubs() {
@@ -162,8 +200,6 @@ class ProfileFragment : Fragment() {
         println("Data Is Clear")
         binding.progressBarProfile.visibility = View.GONE
         binding.profileClubsList.isInvisible = true
-        binding.connectionProblemProfile.setTextColor(resources.getColor(R.color.black))
-        binding.connectionProblemProfile.text = "There are no clubs created by this User"
         binding.connectionProblemProfile.isVisible = true
 
     }
@@ -177,7 +213,7 @@ class ProfileFragment : Fragment() {
 
     private fun initAdapterState() {
         lifecycleScope.launch {
-            adapter.loadStateFlow.collectLatest { loadStates ->
+            clubAdapter.loadStateFlow.collectLatest { loadStates ->
 
 
                 when (loadStates.refresh) {
@@ -198,9 +234,9 @@ class ProfileFragment : Fragment() {
                         println("Else Case")
                         whenDataIsLoaded()
 
-                        if (adapter.itemCount < 1) {
+                        if (clubAdapter.itemCount < 1) {
                             whenDataIsClear()
-                            println("clubs ada" + adapter.itemCount)
+                            println("clubs ada" + clubAdapter.itemCount)
                         }
 
 

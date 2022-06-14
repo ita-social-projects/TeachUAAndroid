@@ -40,8 +40,8 @@ interface RetrofitApi {
         @Path("userId")
         userId: Int? = null,
         @Body
-        updateUserDto: UpdateUserDto
-    ):Response<UpdateUserDto>
+        updateUserDto: UpdateUserDto,
+    ): Response<UpdateUserDto>
 
     //CATEGORIES
     @GET("categories")
@@ -142,4 +142,24 @@ interface RetrofitApi {
         userLoginDto: UserLoginDto,
     ): Response<UserLoggedDto>
 
+    // FEEDBACKS
+    @GET("feedbacks/{id}")
+    suspend fun getFeedbacksById(@Path("id") id: Int): Response<ArrayList<FeedbacksDto>>
+
+    //MESSAGES
+    @POST("message")
+    suspend fun sendMessage(
+        @Header("Authorization")
+        authHeader: String,
+        @Body
+        messageDto: MessageDto,
+    ): Response<MessageResponseDto>
+
+    @GET("messages/recipient/{id}")
+    suspend fun getMessagesByRecipientId(
+        @Header("Authorization")
+        authHeader: String,
+        @Path("id")
+        id: Int,
+    ): Response<List<MessageResponseDto>>
 }

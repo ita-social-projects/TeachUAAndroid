@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Записатись на гурток"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/clubName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="CLUB NAME"
+            android:textColor="@color/blue"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Для запису на гурток зконтактуйте з відповідальними особами"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/contactsLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="https:/example.link.com"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/phoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="+380963893400"
+            android:textColor="@color/black" />
+
+
+        <TextView
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="Написати організатору гуртка"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledMsg"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="18dp"
+            android:hint="Додати опис"
+            android:textColorHint="@color/semi_transparent">
+
+            <!--this is the actual edit text which takes the input-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/enterMsg"
+                android:layout_width="match_parent"
+                android:textColor="@color/black"
+                android:layout_height="150dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/applyToClub"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Надіслати"
+            android:theme="@style/Theme.TeachUaV20.Button"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

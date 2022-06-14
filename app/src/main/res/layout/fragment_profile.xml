@@ -7,6 +7,14 @@
     android:background="?colorBackgroundFloating"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+
+
     <LinearLayout
         android:id="@+id/profileContent"
         android:layout_width="match_parent"
@@ -122,9 +130,17 @@
             android:orientation="horizontal" />
 
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/profileMessagesList"
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
+            tools:listitem="@layout/message_item"
+            android:orientation="vertical" />
+
+
     </LinearLayout>
 
-
+    </ScrollView>
 
 
 
