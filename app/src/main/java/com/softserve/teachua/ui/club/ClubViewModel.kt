@@ -23,11 +23,11 @@ class ClubViewModel @Inject constructor(
 
     private var _message = MutableStateFlow<Resource<MessageResponseDto>>(Resource.loading())
 
-    private var _feedbacks = MutableStateFlow<Resource<ArrayList<FeedbacksDto>>>(Resource.loading())
+    private var _feedbacks = MutableStateFlow<Resource<FeedbacksDto>>(Resource.loading())
 
     private var _user = MutableStateFlow<Resource<UserDto>>(Resource.loading())
 
-    val feedbacks: StateFlow<Resource<ArrayList<FeedbacksDto>>>
+    val feedbacks: StateFlow<Resource<FeedbacksDto>>
         get() = _feedbacks
 
     val message: StateFlow<Resource<MessageResponseDto>>
@@ -42,9 +42,11 @@ class ClubViewModel @Inject constructor(
         _user.value = currentUserUseCasesInterface.getUser()
     }
 
-    fun loadFeedbacks(id: Int) = viewModelScope.launch {
+    fun postFeedback(feedbacksDto: FeedbacksDto) = viewModelScope.launch {
         _feedbacks.value = Resource.loading()
-        _feedbacks.value = feedbacksUseCasesInterface.getFeedbacksById(id)
+        _feedbacks.value =
+            feedbacksUseCasesInterface.postFeedback(currentUserUseCasesInterface.getCurrentUser().data?.token!!,
+                feedbacksDto)
     }
 
     fun sendMessage(messageDto: MessageDto) = viewModelScope.launch {

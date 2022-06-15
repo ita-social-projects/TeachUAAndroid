@@ -5,4 +5,5 @@ import com.softserve.teachua.data.dto.FeedbacksDto
 
 interface FeedbacksUseCasesInterface {
     suspend fun getFeedbacksById(clubId: Int): Resource<ArrayList<FeedbacksDto>>
+    suspend fun postFeedback(token: String, feedbacksDto: FeedbacksDto): Resource<FeedbacksDto>
 }
