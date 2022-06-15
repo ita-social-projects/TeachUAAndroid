@@ -54,7 +54,7 @@ class NewsFragment : Fragment() {
 
                     Resource.Status.SUCCESS -> {
                         showSuccess()
-                        adapter.submitList(news.data)
+                        adapter.submitList(news.data?.reversed())
                     }
 
                     Resource.Status.FAILED -> showError()

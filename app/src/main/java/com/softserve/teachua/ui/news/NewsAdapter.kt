@@ -57,7 +57,7 @@ class NewsAdapter(context: Context) :
 
             Glide.with(layoutInflater.context)
                 .load(baseImageUrl + model.newsUrlTitleLogo)
-                .centerInside()
+                .optionalCircleCrop()
                 .into(itemView.newsLogo)
 
         }

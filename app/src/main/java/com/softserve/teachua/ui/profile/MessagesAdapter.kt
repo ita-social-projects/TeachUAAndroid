@@ -26,9 +26,8 @@ class MessagesAdapter(context: Context) :
 
     override fun onBindViewHolder(holder: MessagesViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it) }
-
+//        notifyItemChanged(position)
         holder.itemView.setOnClickListener {
-
 
             when (holder.itemView.messageText.visibility){
                 View.GONE -> {
@@ -49,6 +48,7 @@ class MessagesAdapter(context: Context) :
             }
             getItem(position).messageIsActive = false
 
+
         }
     }
 
@@ -58,7 +58,7 @@ class MessagesAdapter(context: Context) :
         fun bind(model: MessageModel) {
             itemView.messageTitle.text = model.messageClub.name
             itemView.messageSender.text =
-                model.messageSender.firstName.plus(model.messageSender.lastName)
+                model.messageSender.firstName.plus(" ").plus(model.messageSender.lastName)
             itemView.messageText.text = model.messageText
 
 

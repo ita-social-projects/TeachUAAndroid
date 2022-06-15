@@ -105,6 +105,7 @@ class ProfileFragment : Fragment() {
                 when (profileViewModel.currentUserProfile.value.status) {
                     Resource.Status.SUCCESS -> {
 
+                        showSuccess()
                         profileViewModel.viewModelScope.launch {
                             profileViewModel.profileClubs.collectLatest { profileClubs ->
                                 clubAdapter.submitData(profileClubs)
@@ -200,7 +201,7 @@ class ProfileFragment : Fragment() {
         println("Data Is Clear")
         binding.progressBarProfile.visibility = View.GONE
         binding.profileClubsList.isInvisible = true
-        binding.connectionProblemProfile.isVisible = true
+        binding.connectionProblemProfile.isVisible = false
 
     }
 

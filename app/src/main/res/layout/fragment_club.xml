@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -68,20 +69,35 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="196dp" />
 
+            <Button
+                android:id="@+id/registerToClub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="60dp"
+                android:text="Записатись на урок"
+                app:layout_constraintBottom_toBottomOf="@id/main"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/postFeedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="60dp"
+                android:text="Залишити коментар"
+                tools:ignore="MissingConstraints" />
 
         </LinearLayout>
 
 
+
     </ScrollView>
 
-    <Button
-        android:layout_marginBottom="60dp"
-        android:id="@+id/registerToClub"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Записатись на урок"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="MissingConstraints" />
+
 
     <TextView
         android:id="@+id/connectionProblemClub"

@@ -146,6 +146,14 @@ interface RetrofitApi {
     @GET("feedbacks/{id}")
     suspend fun getFeedbacksById(@Path("id") id: Int): Response<ArrayList<FeedbacksDto>>
 
+    @POST("feedback")
+    suspend fun postFeedback(
+        @Header("Authorization")
+        authHeader: String,
+        @Body
+        feedbacksDto: FeedbacksDto
+    ): Response<FeedbacksDto>
+
     //MESSAGES
     @POST("message")
     suspend fun sendMessage(

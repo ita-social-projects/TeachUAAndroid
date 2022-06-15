@@ -1,5 +1,6 @@
 package com.softserve.teachua.data.retrofit.datasource
 
+import com.softserve.teachua.data.dto.FeedbacksDto
 import com.softserve.teachua.data.dto.MessageDto
 import com.softserve.teachua.data.dto.UpdateUserDto
 import com.softserve.teachua.data.dto.UserLoginDto
@@ -30,6 +31,9 @@ class RemoteDataSource @Inject constructor(private val retrofitApi: RetrofitApi)
     suspend fun getTask(id: Int) = getResult { retrofitApi.getTask(id) }
 
     suspend fun getFeedbacksById(clubId: Int) = getResult { retrofitApi.getFeedbacksById(clubId) }
+
+    suspend fun postFeedback(token: String, feedbacksDto: FeedbacksDto) =
+        getResult { retrofitApi.postFeedback(token, feedbacksDto) }
 
     suspend fun getMessagesByRecipientId(token: String, recipientId: Int) =
         getResult { retrofitApi.getMessagesByRecipientId(token, recipientId) }
