@@ -144,14 +144,14 @@ interface RetrofitApi {
 
     // FEEDBACKS
     @GET("feedbacks/{id}")
-    suspend fun getFeedbacksById(@Path("id") id: Int): Response<ArrayList<FeedbacksDto>>
+    suspend fun getFeedbacksByClubId(@Path("id") id: Int): Response<List<FeedbackResponseDto>>
 
     @POST("feedback")
     suspend fun postFeedback(
         @Header("Authorization")
         authHeader: String,
         @Body
-        feedbacksDto: FeedbacksDto
+        feedbacksDto: FeedbacksDto,
     ): Response<FeedbacksDto>
 
     //MESSAGES

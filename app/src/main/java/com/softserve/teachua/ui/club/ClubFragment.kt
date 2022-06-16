@@ -14,6 +14,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.softserve.teachua.R
 import com.softserve.teachua.app.baseImageUrl
@@ -42,6 +44,8 @@ class ClubFragment : Fragment() {
 
     private lateinit var sendFeedbackDialog: Dialog
 
+    private lateinit var feedbacksAdapter: FeedbacksAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -52,12 +56,13 @@ class ClubFragment : Fragment() {
         val root: View = binding.root
 
 
-        updateView()
-        getCurrentClubInfo()
+        initViews()
         createApplyToClubDialog()
         createSendFeedbackDialog()
         loadUser()
-
+        loadFeedbacks()
+        updateView()
+        getCurrentClubInfo()
 
 
 
@@ -67,6 +72,19 @@ class ClubFragment : Fragment() {
 
     private fun loadUser() {
         clubViewModel.loadUser()
+    }
+
+    private fun loadFeedbacks() {
+        clubViewModel.loadFeedbacks(arguments?.getInt("clubId")!!)
+    }
+
+    private fun initViews() {
+        feedbacksAdapter = FeedbacksAdapter(requireContext())
+        val feedbacksLayoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        binding.feedbacksList.layoutManager = feedbacksLayoutManager
+        binding.feedbacksList.adapter = feedbacksAdapter
+
     }
 
     private fun getCurrentClubInfo() {
@@ -113,6 +131,7 @@ class ClubFragment : Fragment() {
                     Resource.Status.SUCCESS -> {
 
                         showSuccess()
+                        updateFeedBacks()
                         binding.registerToClub.setOnClickListener {
                             applyToClubDialog.clubName.text = arguments?.getString("clubName")
                             applyToClubDialog.contactsLink.text =
@@ -130,7 +149,14 @@ class ClubFragment : Fragment() {
                                 )
 
                                 clubViewModel.sendMessage(messageDto)
-                                applyToClubDialog.dismiss()
+                                when( clubViewModel.sendMessage(messageDto).isCompleted){
+                                   true -> {
+                                       applyToClubDialog.dismiss()
+                                       loadFeedbacks()
+                                   }
+                                }
+
+
 
                             }
                         }
@@ -164,6 +190,8 @@ class ClubFragment : Fragment() {
                                 } else {
                                     clubViewModel.postFeedback(feedback)
                                     sendFeedbackDialog.dismiss()
+                                    feedbacksAdapter.notifyDataSetChanged()
+
                                 }
 
                             }
@@ -175,7 +203,25 @@ class ClubFragment : Fragment() {
             }
 
         }
+    }
 
+    private fun updateFeedBacks() {
+
+        clubViewModel.viewModelScope.launch {
+            clubViewModel.feedbacksList.collectLatest { feedbacks ->
+                when (feedbacks.status) {
+
+                    Resource.Status.SUCCESS -> {
+                        showSuccess()
+                        feedbacksAdapter.submitList(feedbacks.data)
+                    }
+
+                    Resource.Status.LOADING -> showLoading()
+                    Resource.Status.FAILED -> println("Feedbacks failed")
+                }
+
+            }
+        }
     }
 
 

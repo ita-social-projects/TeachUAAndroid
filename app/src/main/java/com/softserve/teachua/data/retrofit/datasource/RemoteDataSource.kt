@@ -30,7 +30,7 @@ class RemoteDataSource @Inject constructor(private val retrofitApi: RetrofitApi)
 
     suspend fun getTask(id: Int) = getResult { retrofitApi.getTask(id) }
 
-    suspend fun getFeedbacksById(clubId: Int) = getResult { retrofitApi.getFeedbacksById(clubId) }
+    suspend fun getFeedbacksByClubId(clubId: Int) = getResult { retrofitApi.getFeedbacksByClubId(clubId) }
 
     suspend fun postFeedback(token: String, feedbacksDto: FeedbacksDto) =
         getResult { retrofitApi.postFeedback(token, feedbacksDto) }

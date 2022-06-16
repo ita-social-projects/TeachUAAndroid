@@ -9,7 +9,7 @@
     android:background="?colorBackgroundFloating"
     tools:context=".ui.club.ClubFragment">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/contentClub"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -91,11 +91,18 @@
                 android:text="Залишити коментар"
                 tools:ignore="MissingConstraints" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="100dp"
+                android:id="@+id/feedbacksList"
+                tools:listitem="@layout/feedback_item"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"/>
+
         </LinearLayout>
 
 
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 
