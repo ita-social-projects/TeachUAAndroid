@@ -24,4 +24,8 @@ interface CurrentUserSharedPreferencesInterface {
     fun setUserCredentials(userLoginDto: UserLoginDto)
 
     fun clearUserCredentials()
+
+    fun getCurrentApiVersion(): Int
+
+    fun setCurrentApiVersion(version: Int)
 }

@@ -21,6 +21,10 @@ class MainActivityViewModel @Inject constructor(
     private var _user: MutableStateFlow<Resource<UserDto>> =
         MutableStateFlow(Resource.loading())
 
+    private var _version: MutableStateFlow<Int> = MutableStateFlow(currentUserUseCases.getCurrentApiVersion())
+
+    val version: StateFlow<Int>
+        get() = _version
 
     val user: StateFlow<Resource<UserDto>>
         get() = _user
@@ -30,7 +34,6 @@ class MainActivityViewModel @Inject constructor(
     fun loadUser() =
         viewModelScope.launch {
             delay(100)
-            println("loaded main user")
             _user.value = Resource.loading()
             _user.value = currentUserUseCases.getUser()
 
@@ -42,6 +45,19 @@ class MainActivityViewModel @Inject constructor(
             _user.value = Resource.error()
             currentUserUseCases.clearCurrentUser()
             currentUserUseCases.clearUser()
+        }
+    }
+
+    fun loadApiVersion(){
+        viewModelScope.launch {
+            delay(100)
+            _version.value = currentUserUseCases.getCurrentApiVersion()
+        }
+    }
+
+    fun setApiVersion(version: Int){
+        viewModelScope.launch {
+            currentUserUseCases.setCurrentApiVersion(version)
         }
     }
 

@@ -6,12 +6,12 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import android.widget.ViewFlipper
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -23,7 +23,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.softserve.teachua.R
 import com.softserve.teachua.app.baseImageUrl
-import com.softserve.teachua.app.roles
+import com.softserve.teachua.app.baseUrl
 import com.softserve.teachua.app.enums.Resource.Status.SUCCESS
 import com.softserve.teachua.app.enums.Role
 import com.softserve.teachua.databinding.ActivityMainBinding
@@ -51,15 +51,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var accountContainer: ViewFlipper
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+        mainActivityViewModel.loadApiVersion()
         initViews()
         initNavController()
         initDrawer()
+        updateVersion()
     }
 
 
@@ -128,9 +131,29 @@ class MainActivity : AppCompatActivity() {
                                 .into(userLogo)
 
                             userLogo.setOnClickListener {
+
                                 closeDrawer()
                                 navController.navigate(R.id.nav_profile)
                             }
+
+                            userLogo.setOnLongClickListener {
+                                mainActivityViewModel.viewModelScope.launch {
+                                    mainActivityViewModel.version.collectLatest { version ->
+                                        if (version == 0) {
+                                            mainActivityViewModel.setApiVersion(1)
+                                        } else
+                                            mainActivityViewModel.setApiVersion(0)
+                                        Toast.makeText(this@MainActivity, "Dev is setted", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+//                                this@MainActivity.recreate()
+                                this@MainActivity.finish()
+
+                                return@setOnLongClickListener true
+                            }
+
+
+
 
                             showLoggedInView()
                         } else
@@ -175,6 +198,29 @@ class MainActivity : AppCompatActivity() {
         Glide.with(this)
             .load(baseImageUrl + "static/media/logo.22da8232.png")
             .into(navigationImageInDrawer)
+    }
+
+    private fun updateVersion() {
+        mainActivityViewModel.viewModelScope.launch {
+            mainActivityViewModel.version.collectLatest { version ->
+                when (version) {
+
+                    0 -> {
+                        println("current Code version = " + version)
+                        baseUrl = "https://speak-ukrainian.org.ua/dev/api/"
+                        baseImageUrl = "https://speak-ukrainian.org.ua/dev/"
+                        Toast.makeText(this@MainActivity, "Dev is setted", Toast.LENGTH_SHORT).show()
+                    }
+                    1 -> {
+                        println("current Code version = " + version)
+                        baseUrl = "https://speak-ukrainian.org.ua/api/"
+                        baseImageUrl = "https://speak-ukrainian.org.ua/"
+                        Toast.makeText(this@MainActivity, "Prod is setted", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+
     }
 
     private fun setToolbar(toolbar: Toolbar) {

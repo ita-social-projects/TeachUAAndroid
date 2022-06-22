@@ -13,6 +13,9 @@ class SharedPreferences(
     private val userCredentials =
         context.getSharedPreferences("userCredentials", Context.MODE_PRIVATE)
 
+    private val userVersion =
+        context.getSharedPreferences("userVersion", Context.MODE_PRIVATE)
+
     private val userCredentialsForRefresh =
         context.getSharedPreferences("userCredentialsRefreshed", Context.MODE_PRIVATE)
 
@@ -103,6 +106,14 @@ class SharedPreferences(
 
     override fun clearUserCredentials() {
         userCredentialsForRefresh.edit().clear().apply()
+    }
+
+    override fun getCurrentApiVersion(): Int {
+        return userVersion.getInt("version", 0)
+    }
+
+    override fun setCurrentApiVersion(version: Int) {
+        userVersion.edit().putInt("version", version).apply()
     }
 
 }

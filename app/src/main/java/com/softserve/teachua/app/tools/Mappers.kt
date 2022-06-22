@@ -99,6 +99,20 @@ internal fun MessageResponseDto.toMessage(): MessageModel {
     )
 }
 
+internal fun List<FeedbackResponseDto>.toFeedback(): List<FeedbackModel> {
+    return map { it.toFeedback() }
+}
+
+internal fun FeedbackResponseDto.toFeedback(): FeedbackModel {
+    return FeedbackModel(
+        feedBackId = id,
+        feedBackRate = rate,
+        feedBackText = text,
+        feedBackDate = date,
+        feedBackUser = user,
+    )
+}
+
 internal fun CitiesDto.toCity(): CityModel {
     return CityModel(
         cityId = id,
