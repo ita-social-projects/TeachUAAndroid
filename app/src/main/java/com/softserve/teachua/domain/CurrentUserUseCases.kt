@@ -47,5 +47,13 @@ class CurrentUserUseCases(
         userSource.setUserCredentials(userLoginDto)
     }
 
+    override fun getCurrentApiVersion(): Int{
+        return userSource.getCurrentApiVersion()
+    }
+
+    override fun setCurrentApiVersion(version: Int){
+        userSource.setCurrentApiVersion(version)
+    }
+
 
 }

@@ -24,4 +24,8 @@ interface CurrentUserUseCasesInterface {
 
     fun setUserCredentials(userLoginDto: UserLoginDto)
 
+    fun getCurrentApiVersion(): Int
+
+    fun setCurrentApiVersion(version: Int)
+
 }
